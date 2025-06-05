@@ -8,6 +8,7 @@ import com.uala.dto.PaginationMetadata;
 import com.uala.dto.TweetResponseDto;
 import com.uala.mapper.TweetMapper;
 import com.uala.service.TimelineService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +16,12 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/timeline")
 public class TimelineController {
 
     private final TimelineService timelineService;
     private final TweetMapper tweetMapper;
-
-    public TimelineController(TimelineService timelineService, TweetMapper tweetMapper) {
-        this.timelineService = timelineService;
-        this.tweetMapper = tweetMapper;
-    }
 
     @GetMapping
     public ResponseEntity<ApiResponse<PaginatedTweetsResponse>> getTimeline(

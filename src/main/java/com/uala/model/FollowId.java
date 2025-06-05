@@ -10,7 +10,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FollowId implements Serializable {
-    // TODO why this class?
     private UUID followerId;
     private UUID followedId;
 

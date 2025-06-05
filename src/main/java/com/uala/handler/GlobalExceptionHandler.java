@@ -2,13 +2,11 @@ package com.uala.handler;
 
 import com.uala.dto.ApiError;
 import com.uala.dto.ApiResponse;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingRequestHeaderException;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -49,24 +47,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(ApiResponse.failure(error));
     }
 
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<ApiResponse<Object>> handleMissingParam(MissingServletRequestParameterException ex) {
-        String message = "Missing required parameter: " + ex.getParameterName();
-        return ResponseEntity.badRequest().body(ApiResponse.failure(new ApiError("MISSING_PARAMETER", message)));
-    }
-
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ApiResponse<Void>> handleBadRequest(IllegalArgumentException ex) {
         return ResponseEntity
                 .badRequest()
                 .body(ApiResponse.failure(new ApiError("BAD_REQUEST", ex.getMessage())));
-    }
-
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ApiResponse<Void>> handleNotFound(EntityNotFoundException ex) {
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(ApiResponse.failure(new ApiError("NOT_FOUND", ex.getMessage())));
     }
 
     @ExceptionHandler(Exception.class)

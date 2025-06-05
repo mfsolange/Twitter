@@ -1,7 +1,7 @@
 package com.uala.mapper;
 
-import com.uala.dto.TweetResponseDto;
 import com.uala.domain.Tweet;
+import com.uala.dto.TweetResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component

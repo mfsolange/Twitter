@@ -3,6 +3,7 @@ package com.uala.repository;
 import com.uala.domain.PaginatedResult;
 import com.uala.domain.Tweet;
 import com.uala.model.TweetEntity;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -11,13 +12,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
+@AllArgsConstructor
 public class TweetRepository {
 
     private final SpringDataTweetRepository springDataTweetRepository;
-
-    public TweetRepository(SpringDataTweetRepository springDataTweetRepository) {
-        this.springDataTweetRepository = springDataTweetRepository;
-    }
 
     public void save(Tweet tweet) {
         var entity = new TweetEntity(tweet.getId(), tweet.getUserId(), tweet.getContent(), tweet.getCreatedAt());
