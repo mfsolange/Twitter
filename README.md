@@ -46,7 +46,7 @@ Headers:
 
 Query Params:
 - offset (default: 0)
-- limit (default: 20)
+- limit (default: 10)
 
 Response:
 
